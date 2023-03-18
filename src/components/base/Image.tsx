@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {generateClassName, generateStyleString} from './utils'
+import {generateClassName, generateStyle} from './utils'
 
 
 type ImageProps = {
@@ -16,17 +16,19 @@ export default (props: ImageProps) => {
 	// RenderComponent, если я захочу использовать другие имена классов.
 	// Не уверен, что их можно изменять.
 
-	const styles = {
-		width: props.width + 'px',
-		height: props.height + 'px',
-		"background-image": `url(${props.src})`,
-	}
+	const className: string = generateClassName();
+	const sheet = {
+		['.' + className]: `{
+			width: ${props.width + 'px'};
+			height: ${props.height + 'px'};
+			background-image: ${`url(${props.src})`};
+		}`
+	};
 
-	const className: string = `${generateClassName()}`;
 	
 	return (
 		<>
-			<style>{generateStyleString(className, styles)}</style>
+			<style>{generateStyle(sheet)}</style>
 			<div className={className}/>
 		</>
 	);
