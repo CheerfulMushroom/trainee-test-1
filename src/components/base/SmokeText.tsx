@@ -1,13 +1,12 @@
 import * as React from "react";
 import { generateClassName, generateStyle } from "./utils";
 
-export default ({children}) => {
-	const text: string = children.normalize('NFC');
+export default ({ children }) => {
+	const text: string = children.normalize("NFC");
 
-	// Предупреждение 'item was found 2' (/м.*о.*с.*к.*в.*а/i.test(element.innerHTML)) 
+	// Предупреждение 'item was found 2' (/м.*о.*с.*к.*в.*а/i.test(element.innerHTML))
 	// будет возникать всегда, но не из-за SmokeText а из-за обычного текста. Например:
 	// "мин. от м. Сходненская. Развитая инфраструктура. Индивидуа"
-
 
 	// 1) Обфусцировать исходный текст, заменив кириллицу на английские омоглифы
 	// 2) Разбить текст на части
@@ -17,26 +16,26 @@ export default ({children}) => {
 		// Используем только английские омоглифы, иначе появится большая
 		// вероятность возникновения проблем со шрифтом
 		const similarChars = {
-			'а': 'a',
-			'В': 'B',
-			'Е': 'E',
-			'е': 'e',
-			'К': 'K',
-			'М': 'M',
-			'Н': 'H',
-			'О': 'O',
-			'о': 'o',
-			'Р': 'P',
-			'р': 'p',
-			'с': 'c',
-			'С': 'C',
-			'Т': 'T',
-			'у': 'y',
-			'Х': 'X',
-			'х': 'x',
+			а: "a",
+			В: "B",
+			Е: "E",
+			е: "e",
+			К: "K",
+			М: "M",
+			Н: "H",
+			О: "O",
+			о: "o",
+			Р: "P",
+			р: "p",
+			с: "c",
+			С: "C",
+			Т: "T",
+			у: "y",
+			Х: "X",
+			х: "x",
 		};
 
-		// replaceAll unavailable. Iterating over string 
+		// replaceAll unavailable. Iterating over string
 		const chars = Array.from(text);
 		for (let i = 0; i < chars.length; i++) {
 			if (similarChars.hasOwnProperty(chars[i])) {
@@ -44,48 +43,48 @@ export default ({children}) => {
 			}
 		}
 
-		return chars.join('');
-	}
+		return chars.join("");
+	};
 
 	const splitText = (text: string): string[] => {
 		const chars = Array.from(text);
-		const chunkSize = chars.length ** 0.5 >> 0;
-		
+		const chunkSize = (chars.length ** 0.5) >> 0;
+
 		let chunks: string[] = [];
 
 		let i = 0;
 		while (i < chars.length) {
-			const chunk = chars.slice(i, i + chunkSize).join('');
+			const chunk = chars.slice(i, i + chunkSize).join("");
 			chunks.push(chunk);
 			i += chunkSize;
 		}
 
 		return chunks;
-	}
+	};
 
 	const generateRandomString = (maxLength: number): string => {
-		const alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+		const alphabet =
+			"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 		const stringSize = (Math.random() * maxLength + 1) >> 0;
 
-		let result = '';
+		let result = "";
 		for (let i = 0; i < stringSize; i++) {
 			result += alphabet[Math.floor(Math.random() * alphabet.length)];
 		}
 
 		return result;
-	}
+	};
 
 	const obfuscatedText = obfuscateString(text);
-	const sheet: {[key: string]: string} = {};
+	const sheet: { [key: string]: string } = {};
 	const elements = [];
-	
+
 	for (const chunk of splitText(obfuscatedText)) {
 		const className = generateClassName();
 
 		sheet[`.${className}::before`] = `{
 			content: "${obfuscateString(chunk)}";
 		}`;
-
 
 		const decoyClassName = generateClassName();
 		const maxDecoySize = 5;
@@ -102,9 +101,10 @@ export default ({children}) => {
 		);
 	}
 
-	
-	return <>
-		<style>{generateStyle(sheet)}</style>
-		{elements}
-	</>
+	return (
+		<>
+			<style>{generateStyle(sheet)}</style>
+			{elements}
+		</>
+	);
 };
