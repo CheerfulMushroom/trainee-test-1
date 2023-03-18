@@ -8,9 +8,10 @@ export default ({children}) => {
 	// будет возникать всегда, но не из-за SmokeText а из-за обычного текста. Например:
 	// "мин. от м. Сходненская. Развитая инфраструктура. Индивидуа"
 
-	// 1) subtitute some chars to similar chars in different languages
-	// 2) split text in pieces and insert it in spans
-	// 3) generate salt
+
+	// 1) Обфусцировать исходный текст, заменив кириллицу на английские омоглифы
+	// 2) Разбить текст на части
+	// 3) Каждую часть добавить в span::after. Внутрь каждого span добавить невидимые рандомные строки
 
 	const obfuscateString = (text: string): string => {
 		// Используем только английские омоглифы, иначе появится большая
@@ -62,20 +63,44 @@ export default ({children}) => {
 		return chunks;
 	}
 
+	const generateRandomString = (maxLength: number): string => {
+		const alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+		const stringSize = (Math.random() * maxLength + 1) >> 0;
+
+		let result = '';
+		for (let i = 0; i < stringSize; i++) {
+			result += alphabet[Math.floor(Math.random() * alphabet.length)];
+		}
+
+		return result;
+	}
+
 	const obfuscatedText = obfuscateString(text);
 	const sheet: {[key: string]: string} = {};
 	const elements = [];
 	
 	for (const chunk of splitText(obfuscatedText)) {
 		const className = generateClassName();
-		const pseudoClassName = `${className}::after`
-		sheet[`.${pseudoClassName}`] = `{
-			content: "${obfuscateString(chunk)}"
-		}`
 
-		elements.push(<span key={className} className={className}/>)
+		sheet[`.${className}::before`] = `{
+			content: "${obfuscateString(chunk)}";
+		}`;
+
+
+		const decoyClassName = generateClassName();
+		const maxDecoySize = 5;
+		const decoyContent = generateRandomString(maxDecoySize);
+
+		sheet[`.${decoyClassName}`] = `{
+			display: none;
+		}`;
+
+		elements.push(
+			<span key={className} className={className}>
+				<span className={decoyClassName}>{decoyContent}</span>
+			</span>
+		);
 	}
-
 
 	
 	return <>
