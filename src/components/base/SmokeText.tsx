@@ -1,5 +1,7 @@
 import * as React from "react";
-import { generateClassName, generateStyle } from "./utils";
+
+import { generateClassName, generateStyleString } from "./utils";
+import { StyleSheet } from "./utils";
 
 export default ({ children }) => {
 	const text: string = children.normalize("NFC");
@@ -76,23 +78,23 @@ export default ({ children }) => {
 	};
 
 	const obfuscatedText = obfuscateString(text);
-	const sheet: { [key: string]: string } = {};
+	const sheet: StyleSheet = {};
 	const elements = [];
 
 	for (const chunk of splitText(obfuscatedText)) {
 		const className = generateClassName();
 
-		sheet[`.${className}::before`] = `{
-			content: "${obfuscateString(chunk)}";
-		}`;
+		sheet[`.${className}::before`] = {
+			content: `"${obfuscateString(chunk)}"`,
+		};
 
 		const decoyClassName = generateClassName();
 		const maxDecoySize = 5;
 		const decoyContent = generateRandomString(maxDecoySize);
 
-		sheet[`.${decoyClassName}`] = `{
-			display: none;
-		}`;
+		sheet[`.${decoyClassName}`] = {
+			display: "none",
+		};
 
 		elements.push(
 			<span key={className} className={className}>
@@ -103,7 +105,7 @@ export default ({ children }) => {
 
 	return (
 		<>
-			<style>{generateStyle(sheet)}</style>
+			<style>{generateStyleString(sheet)}</style>
 			{elements}
 		</>
 	);

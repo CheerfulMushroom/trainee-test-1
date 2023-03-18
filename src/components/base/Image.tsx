@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { generateClassName, generateStyle } from "./utils";
+import { generateClassName, generateStyleString } from "./utils";
 
 type ImageProps = {
 	width: number;
@@ -16,16 +16,16 @@ export default (props: ImageProps) => {
 
 	const className: string = generateClassName();
 	const sheet = {
-		["." + className]: `{
-			width: ${props.width + "px"};
-			height: ${props.height + "px"};
-			background-image: ${`url(${props.src})`};
-		}`,
+		["." + className]: {
+			width: `${props.width + "px"}`,
+			height: `${props.height + "px"}`,
+			"background-image": `url(${props.src})`,
+		},
 	};
 
 	return (
 		<>
-			<style>{generateStyle(sheet)}</style>
+			<style>{generateStyleString(sheet)}</style>
 			<div className={className} />
 		</>
 	);

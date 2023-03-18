@@ -1,15 +1,27 @@
 import * as Cid from "smokescreen/Cid";
 
-export const generateStyle = (sheet: { [key: string]: string }): string => {
-	let style: string = "";
+export type StyleSheet = {
+	[selector: string]: {
+		[style: string]: string;
+	};
+};
 
-	for (const [key, value] of Object.entries(sheet)) {
-		if (value) {
-			style += `${key} ${value}`;
+export const generateStyleString = (sheet: StyleSheet): string => {
+	let result: string = "";
+
+	for (const [selector, styles] of Object.entries(sheet)) {
+		let styleStrings = [];
+
+		for (const [style, value] of Object.entries(styles)) {
+			if (value) {
+				styleStrings.push(`${style}: ${value}`);
+			}
 		}
+
+		result += `${selector} {${styleStrings.join(";")}}`;
 	}
 
-	return style;
+	return result;
 };
 
 export const generateClassName = (): string => {
