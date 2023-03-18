@@ -1,25 +1,36 @@
 {
-  "name": "trainee-test-1",
-  "version": "1.1.1",
-  "engines": {
-    "node": ">=10.4.0"
-  },
-  "scripts": {
-    "start": "start-storybook"
-  },
-  "dependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
-  },
-  "devDependencies": {
-    "@storybook/react": "5.1.9",
-    "@types/node": "15.14.9",
-    "@types/react": "16.8.23",
-    "@types/react-dom": "16.8.4",
-    "@types/storybook__react": "4.0.2",
-    "awesome-typescript-loader": "5.2.1",
-    "core-js": "3.1.4",
-    "typescript": "3.5.3",
-    "webpack": "4.35.3"
-  }
+	"name": "trainee-test-1",
+	"version": "1.1.1",
+	"engines": {
+		"node": ">=10.4.0"
+	},
+	"scripts": {
+		"start": "start-storybook",
+		"test": "jest"
+	},
+	"dependencies": {
+		"react": "16.8.6",
+		"react-dom": "16.8.6",
+		"react-test-renderer": "16.8.6"
+	},
+	"devDependencies": {
+		"@jest/globals": "25.5.2",
+		"@storybook/react": "5.1.9",
+		"@types/babel__traverse": "7.0.6",
+		"@types/jest": "25.1.5",
+		"@types/node": "15.14.9",
+		"@types/react": "16.8.23",
+		"@types/react-dom": "16.8.4",
+		"@types/storybook__react": "4.0.2",
+		"awesome-typescript-loader": "5.2.1",
+		"core-js": "3.1.4",
+		"jest": "25.5.4",
+		"ts-jest": "25.5.1",
+		"typescript": "3.5.3",
+		"webpack": "4.35.3"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
+	}
 }
