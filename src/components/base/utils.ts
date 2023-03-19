@@ -1,5 +1,3 @@
-import * as Cid from "smokescreen/Cid";
-
 export type StyleSheet = {
 	[selector: string]: {
 		[style: string]: string;
@@ -24,6 +22,49 @@ export const generateStyleString = (sheet: StyleSheet): string => {
 	return result;
 };
 
-export const generateClassName = (): string => {
-	return Cid();
+export const obfuscateString = (text: string): string => {
+	// Используем только английские омоглифы, иначе появится
+	// вероятность возникновения проблем со шрифтом
+	const similarChars = {
+		а: "a",
+		В: "B",
+		Е: "E",
+		е: "e",
+		К: "K",
+		М: "M",
+		Н: "H",
+		О: "O",
+		о: "o",
+		Р: "P",
+		р: "p",
+		с: "c",
+		С: "C",
+		Т: "T",
+		у: "y",
+		Х: "X",
+		х: "x",
+	};
+
+	// replaceAll unavailable. Iterating over string
+	const chars = Array.from(text);
+	for (let i = 0; i < chars.length; i++) {
+		if (similarChars.hasOwnProperty(chars[i])) {
+			chars[i] = similarChars[chars[i]];
+		}
+	}
+
+	return chars.join("");
+};
+
+export const generateRandomString = (maxLength: number): string => {
+	const alphabet =
+		"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+	const stringSize = (Math.random() * maxLength + 1) >> 0;
+
+	let result = "";
+	for (let i = 0; i < stringSize; i++) {
+		result += alphabet[Math.floor(Math.random() * alphabet.length)];
+	}
+
+	return result;
 };

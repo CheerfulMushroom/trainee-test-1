@@ -3,9 +3,16 @@ import { describe, test, expect } from "@jest/globals";
 const renderer = require("react-test-renderer");
 
 import SmokeText from "../SmokeText";
-jest.mock("../utils");
 
-const generateStableRandom = (): (() => number) => {
+let counter = 0;
+jest.mock("smokescreen/Cid", () => {
+	return () => {
+		++counter;
+		return "className" + counter.toString();
+	};
+});
+
+const generateStableRandomizer = (): (() => number) => {
 	let value = 1;
 
 	return (): number => {
@@ -18,9 +25,9 @@ const generateStableRandom = (): (() => number) => {
 
 describe("Рендер", () => {
 	beforeEach(() => {
-		require("../utils").__reset();
+		counter = 0;
 		jest.spyOn(global.Math, "random").mockImplementation(
-			generateStableRandom()
+			generateStableRandomizer()
 		);
 	});
 

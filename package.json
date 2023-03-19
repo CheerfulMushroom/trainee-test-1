@@ -28,9 +28,5 @@
 		"ts-jest": "25.5.1",
 		"typescript": "3.5.3",
 		"webpack": "4.35.3"
-	},
-	"jest": {
-		"preset": "ts-jest",
-		"testEnvironment": "node"
 	}
 }

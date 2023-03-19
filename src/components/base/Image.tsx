@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { generateClassName, generateStyleString } from "./utils";
+import * as generateClassName from "smokescreen/Cid";
+
+import { generateStyleString } from "./utils";
 
 type ImageProps = {
 	width: number;
