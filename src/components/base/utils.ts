@@ -48,7 +48,7 @@ export const obfuscateString = (text: string): string => {
 	// replaceAll unavailable. Iterating over string
 	const chars = Array.from(text);
 	for (let i = 0; i < chars.length; i++) {
-		const tryReplace = Math.round(Math.random());
+		const tryReplace = !!Math.round(Math.random());
 		if (tryReplace && similarChars.hasOwnProperty(chars[i])) {
 			chars[i] = similarChars[chars[i]];
 		}

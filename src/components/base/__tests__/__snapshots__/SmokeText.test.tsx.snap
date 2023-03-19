@@ -1,86 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Рендер Один символ 1`] = `
-Array [
+<div
+  className="className3"
+>
   <style>
-    .className1::before {content: "А"}.className2 {display: none}
-  </style>,
-  <span
+    .className1 {display: inline}.className2 {display: none}.className3 {display: inline}
+  </style>
+  <div
     className="className1"
   >
-    <span
-      className="className2"
-    >
-      Внг
-    </span>
-  </span>,
-]
+    А
+  </div>
+  <div
+    className="className2"
+  >
+    Вн
+  </div>
+</div>
 `;
 
 exports[`Рендер Пустая строка 1`] = `
-<style>
-  
-</style>
+<div
+  className="className1"
+>
+  <style>
+    .className1 {display: inline}
+  </style>
+</div>
 `;
 
 exports[`Рендер Текст "Здесь могла быть ваша реклама" 1`] = `
-Array [
+<div
+  className="className11"
+>
   <style>
-    .className1::before {content: "Здecь "}.className2 {display: none}.className3::before {content: "мoгла б"}.className4 {display: none}.className5::before {content: "ыть вa"}.className6 {display: none}.className7::before {content: "ша "}.className8 {display: none}.className9::before {content: "pe"}.className10 {display: none}.className11::before {content: "кламa"}.className12 {display: none}
-  </style>,
-  <span
+    .className1 {display: inline}.className1::after {content: "ь мoг"}.className2 {display: none}.className3 {display: inline}.className3::after {content: "ыт"}.className4 {display: none}.className5 {display: inline}.className5::after {content: " вaш"}.className6 {display: none}.className7 {display: inline}.className7::after {content: "peкл"}.className8 {display: none}.className9 {display: inline}.className10 {display: none}.className11 {display: inline}
+  </style>
+  <div
     className="className1"
   >
-    <span
-      className="className2"
-    >
-      НПЙдЗ
-    </span>
-  </span>,
-  <span
+    Здec
+  </div>
+  <div
+    className="className2"
+  >
+    рыР
+  </div>
+  <div
     className="className3"
   >
-    <span
-      className="className4"
-    >
-      йя
-    </span>
-  </span>,
-  <span
+    ла б
+  </div>
+  <div
+    className="className4"
+  >
+    ЪгЩ
+  </div>
+  <div
     className="className5"
   >
-    <span
-      className="className6"
-    >
-      Яя
-    </span>
-  </span>,
-  <span
+    ь
+  </div>
+  <div
+    className="className6"
+  >
+    е
+  </div>
+  <div
     className="className7"
   >
-    <span
-      className="className8"
-    >
-      А
-    </span>
-  </span>,
-  <span
+    a 
+  </div>
+  <div
+    className="className8"
+  >
+    эЬ
+  </div>
+  <div
     className="className9"
   >
-    <span
-      className="className10"
-    >
-      БэЬгР
-    </span>
-  </span>,
-  <span
-    className="className11"
+    амa
+  </div>
+  <div
+    className="className10"
   >
-    <span
-      className="className12"
-    >
-      ЗОНЯШ
-    </span>
-  </span>,
-]
+    збЛ
+  </div>
+</div>
 `;
