@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Рендер Один символ 1`] = `
+Array [
+  <style>
+    .className1::before {content: "А"}.className2 {display: none}
+  </style>,
+  <span
+    className="className1"
+  >
+    <span
+      className="className2"
+    >
+      з
+    </span>
+  </span>,
+]
+`;
+
+exports[`Рендер Пустая строка 1`] = `
+<style>
+  
+</style>
+`;
+
+exports[`Рендер Текст "Здесь могла быть ваша реклама" 1`] = `
+Array [
+  <style>
+    .className1::before {content: "Здecь"}.className2 {display: none}.className3::before {content: " мoгл"}.className4 {display: none}.className5::before {content: "a быт"}.className6 {display: none}.className7::before {content: "ь вaш"}.className8 {display: none}.className9::before {content: "a peк"}.className10 {display: none}.className11::before {content: "лaмa"}.className12 {display: none}
+  </style>,
+  <span
+    className="className1"
+  >
+    <span
+      className="className2"
+    >
+      з
+    </span>
+  </span>,
+  <span
+    className="className3"
+  >
+    <span
+      className="className4"
+    >
+      эВнг
+    </span>
+  </span>,
+  <span
+    className="className5"
+  >
+    <span
+      className="className6"
+    >
+      КЫшБ
+    </span>
+  </span>,
+  <span
+    className="className7"
+  >
+    <span
+      className="className8"
+    >
+      вгБКа
+    </span>
+  </span>,
+  <span
+    className="className9"
+  >
+    <span
+      className="className10"
+    >
+      дъ
+    </span>
+  </span>,
+  <span
+    className="className11"
+  >
+    <span
+      className="className12"
+    >
+      ЕЫХБ
+    </span>
+  </span>,
+]
+`;

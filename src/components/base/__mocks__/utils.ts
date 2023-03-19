@@ -28,6 +28,9 @@ export const generateStyleString = (sheet: StyleSheet): string => {
 	return result;
 };
 
+mock.__reset = () => {
+	counter = 0;
+};
 mock.generateClassName = generateClassName;
 mock.generateStyleString = generateStyleString;
 
