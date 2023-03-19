@@ -26,12 +26,12 @@ export default ({ children }) => {
 
 	const splitText = (text: string): string[] => {
 		const chars = Array.from(text);
-		const chunkSize = (chars.length ** 0.5) >> 0;
-
 		let chunks: string[] = [];
+		const maxChunkSize = Math.ceil(chars.length ** 0.5);
 
 		let i = 0;
 		while (i < chars.length) {
+			const chunkSize = 1 + Math.ceil(Math.random() * maxChunkSize);
 			const chunk = chars.slice(i, i + chunkSize).join("");
 			chunks.push(chunk);
 			i += chunkSize;
