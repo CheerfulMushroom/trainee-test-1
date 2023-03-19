@@ -5,7 +5,7 @@ exports[`Рендер Один символ 1`] = `
   className="className3"
 >
   <style>
-    .className1 {display: inline}.className2 {display: none}.className3 {display: inline}
+    .className1 {display: inline}.className2 {display: none}.className2::after {content: "K"}.className3 {display: inline}
   </style>
   <div
     className="className1"
@@ -35,7 +35,7 @@ exports[`Рендер Текст "Здесь могла быть ваша рек
   className="className11"
 >
   <style>
-    .className1 {display: inline}.className1::after {content: "ь мoг"}.className2 {display: none}.className3 {display: inline}.className3::after {content: "ыт"}.className4 {display: none}.className5 {display: inline}.className5::after {content: " вaш"}.className6 {display: none}.className7 {display: inline}.className7::after {content: "peкл"}.className8 {display: none}.className9 {display: inline}.className10 {display: none}.className11 {display: inline}
+    .className1 {display: inline}.className1::after {content: "ь мoг"}.className2 {display: none}.className2::after {content: "ос"}.className3 {display: inline}.className3::after {content: "ыт"}.className4 {display: none}.className4::after {content: "pе"}.className5 {display: inline}.className5::after {content: " вaш"}.className6 {display: none}.className6::after {content: "РФз"}.className7 {display: inline}.className7::after {content: "peкл"}.className8 {display: none}.className8::after {content: "ЁX"}.className9 {display: inline}.className10 {display: none}.className10::after {content: "Д"}.className11 {display: inline}
   </style>
   <div
     className="className1"
@@ -50,12 +50,12 @@ exports[`Рендер Текст "Здесь могла быть ваша рек
   <div
     className="className3"
   >
-    ла б
+    лa б
   </div>
   <div
     className="className4"
   >
-    ЪгЩ
+    фЯ
   </div>
   <div
     className="className5"
@@ -65,7 +65,7 @@ exports[`Рендер Текст "Здесь могла быть ваша рек
   <div
     className="className6"
   >
-    е
+    Ьг
   </div>
   <div
     className="className7"
@@ -75,7 +75,7 @@ exports[`Рендер Текст "Здесь могла быть ваша рек
   <div
     className="className8"
   >
-    эЬ
+    ц
   </div>
   <div
     className="className9"
@@ -85,7 +85,7 @@ exports[`Рендер Текст "Здесь могла быть ваша рек
   <div
     className="className10"
   >
-    збЛ
+    ск
   </div>
 </div>
 `;

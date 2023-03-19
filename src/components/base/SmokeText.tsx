@@ -70,9 +70,13 @@ export default ({ children }) => {
 		const decoyClassName = generateClassName();
 		const maxDecoyLength = 3;
 		const decoyContent = generateRandomString(maxDecoyLength);
+		const decoyPseudoContent = generateRandomString(maxDecoyLength);
 
 		sheet[`.${decoyClassName}`] = {
 			display: "none",
+		};
+		sheet[`.${decoyClassName}::after`] = {
+			content: `"${obfuscateString(decoyPseudoContent)}"`,
 		};
 
 		elements.push(
